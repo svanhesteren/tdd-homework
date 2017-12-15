@@ -72,7 +72,7 @@ We care about these things:
 
 Please submit your homework by Sunday at 20:00. You can send mail to the `teachers` mailbox on `codaisseur.com`
 
-Monday in the afternoon you will be evaluated by your teacher(s). No need to book a slot, we will call you in.
+Tuesday you will be evaluated by your teacher(s).
 
 Good luck (and have fun)!
 
