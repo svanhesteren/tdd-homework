@@ -20,35 +20,26 @@ class Codebreaker
       number == 4
     end
 
-    def get_match_char(number, position)
-        match_char = ""
+    def add_match_sign(number, position)
         return "" if @used_numbers.include?(number)
-
         if @secret_number.include?(number)
           @used_numbers << number
-          if exact_match?(number, position)
-            match_char = "+"
-          else
-            match_char = "-"
-          end
+          return exact_match?(number, position) ? "+" : "-"
         end
-        match_char
-      end
+        ""
+    end
 
     def guess(input)
-      result_string = ""
+      result_signs = ""
       @used_numbers = ""
+
       return output.puts "Try guessing a number with four digits" if !right_size?(input.length)
+      (0...input.length).each {|input_pos| result_signs << add_match_sign(input[input_pos], input_pos)}
 
-      for num_pos in (0...input.length)
-        result_string << get_match_char(input[num_pos], num_pos)
+      if @used_numbers.include?(input[3]) && exact_match?(input[3], 3)
+        result_signs.sub!("-", "+")
       end
-
-      if @used_numbers.count(input[3]) && exact_match?(input[3], 3)
-        result_string.sub!("-", "+")
-      end
-
-      output.puts result_string.chars.sort.join
+      output.puts result_signs.chars.sort.join
     end
 
   end
