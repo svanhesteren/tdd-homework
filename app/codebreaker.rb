@@ -1,5 +1,8 @@
 class Codebreaker
   class Game
+    MAX_INPUT_SIZE = 4
+    POSITIVE_SIGN = "+"
+    NEGATIVE_SIGN = "-"
     attr_reader :output
 
     def initialize(output)
@@ -17,14 +20,14 @@ class Codebreaker
     end
 
     def right_size?(number)
-      number == 4
+      number == MAX_INPUT_SIZE
     end
 
     def add_match_sign(number, position)
         return "" if @used_numbers.include?(number)
         if @secret_number.include?(number)
           @used_numbers << number
-          return exact_match?(number, position) ? "+" : "-"
+          return exact_match?(number, position) ? POSITIVE_SIGN : NEGATIVE_SIGN
         end
         ""
     end
@@ -37,7 +40,7 @@ class Codebreaker
       (0...input.length).each {|input_pos| result_signs << add_match_sign(input[input_pos], input_pos)}
 
       if @used_numbers.include?(input[3]) && exact_match?(input[3], 3)
-        result_signs.sub!("-", "+")
+        result_signs.sub!(NEGATIVE_SIGN, POSITIVE_SIGN)
       end
       output.puts result_signs.chars.sort.join
     end
