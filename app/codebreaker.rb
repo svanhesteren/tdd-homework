@@ -15,6 +15,12 @@ class Codebreaker
       output.puts "Enter guess:"
     end
 
+    def guess(input)
+      output.puts generate_result(input)
+    end
+
+    private
+    
     def exact_match?(number, position)
       number == @secret_number[position]
     end
@@ -32,7 +38,7 @@ class Codebreaker
         ""
     end
 
-    def guess(input)
+    def generate_result(input)
       result_signs = ""
       @used_numbers = ""
 
@@ -42,7 +48,7 @@ class Codebreaker
       if @used_numbers.include?(input[3]) && exact_match?(input[3], 3)
         result_signs.sub!(NEGATIVE_SIGN, POSITIVE_SIGN)
       end
-      output.puts result_signs.chars.sort.join
+      result_signs.chars.sort.join
     end
 
   end
